@@ -6,6 +6,7 @@ package com.voximplant.foregroundservice;
 
 import android.app.Notification;
 import android.app.Service;
+import android.content.pm.ServiceInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -30,7 +31,7 @@ public class VIForegroundService extends Service {
                         Notification notification = NotificationHelper.getInstance(getApplicationContext())
                                 .buildNotification(getApplicationContext(), notificationConfig);
 
-                        startForeground((int)notificationConfig.getDouble("id"), notification);
+                        startForeground((int)notificationConfig.getDouble("id"), notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
                     }
                 }
             } else if (action.equals(Constants.ACTION_FOREGROUND_SERVICE_STOP)) {
